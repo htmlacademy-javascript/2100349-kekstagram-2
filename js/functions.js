@@ -33,3 +33,21 @@ const palindrome = str => {
 const str = 'level';
 const isPalindrome = palindrome(str);
 console.log (isPalindrome);
+
+// Функция подсчета времени
+
+const parseTime = (time) => {
+  const splited = time.split(':');
+  return parseInt(splited[0], 10) * 60 + parseInt(splited[1], 10);
+};
+
+const timeFrame = (startWorkingDay, endWorkingDay, startMeeting, durationMeeting) => {
+  const startDayMin = parseTime(startWorkingDay);
+  const endDayMin = parseTime(endWorkingDay);
+  const startMeetingMin = parseTime(startMeeting);
+  const meetingEndMin = startMeetingMin + durationMeeting;
+  return startDayMin <= startMeetingMin && meetingEndMin <= endDayMin;
+}
+
+console.log (timeFrame('8:0', '10:0', '8:0', 120)); // true
+console.log (timeFrame('8:00', '17:30', '08:00', 900)); // false
