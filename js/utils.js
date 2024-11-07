@@ -1,4 +1,4 @@
-import {MESSAGES, NAMES} from './util.js';
+import {MESSAGES, NAMES} from './constants.js';
 
 const getRandomIntInclusive = (min, max) => {
   min = Math.ceil(min);

@@ -1,6 +1,6 @@
-import {PHOTO_COUNT, DESCRIPTIONS} from './util.js';
+import {PHOTO_COUNT, DESCRIPTIONS} from './constants.js';
 
-import {getRandomArrayElement, getRandomIntInclusive, uniquePhoto, uniqueId, createComments} from './script.js';
+import {getRandomArrayElement, getRandomIntInclusive, uniquePhoto, uniqueId, createComments} from './utils.js';
 
 
 const createPhoto = () => {
