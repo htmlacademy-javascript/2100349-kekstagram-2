@@ -7,9 +7,10 @@ export const renderCards = (photos) => {
 const fragment = document.createDocumentFragment();
   photos.forEach((photo) => {
     const thumbnail = cardTemplate.cloneNode(true);
-    thumbnail.querySelector('.picture_img').src = photo.url;
-    thumbnail.querySelector('.picture_comments').data.textContent('comments'.length);
-    thumbnail.querySelector('#likes');
+    thumbnail.querySelector('.picture__img').src = photo.url;
+    thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
+    thumbnail.querySelector('.picture__likes').textContent = photo.likes;
+    fragment.append(thumbnail)
   });
   containerElement.append(fragment);
 };
