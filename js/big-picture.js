@@ -1,7 +1,7 @@
 import {isEscapeKey, isEnterKey} from './utils.js';
 
 const modal = document.querySelector('.big-picture');
-const userCloseWindow = modal.document.querySelector('.big-picture__cancel');
+const userCloseWindow = modal.querySelector('.big-picture__cancel');
 const image = modal.querySelector('.big-picture_img img');
 const caption = modal.querySelector('.social__caption');
 const likesCount = modal.querySelector('.likes-count');
