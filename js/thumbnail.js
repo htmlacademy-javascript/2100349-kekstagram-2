@@ -1,4 +1,4 @@
-import { openUserModule } from "./big-picture.js";
+import { openUserModule } from './big-picture.js';
 
 const containerElement = document.querySelector('.pictures');
 const cardTemplate = document.querySelector('#picture').content.querySelector('.picture');

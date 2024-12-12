@@ -2,7 +2,7 @@ import {isEscapeKey, isEnterKey} from './utils.js';
 
 const modal = document.querySelector('.big-picture');
 const userCloseWindow = modal.querySelector('.big-picture__cancel');
-const image = modal.querySelector('.big-picture_img img');
+const image = modal.querySelector('.big-picture__img img');
 const caption = modal.querySelector('.social__caption');
 const likesCount = modal.querySelector('.likes-count');
 const totalComments = modal.querySelector('.social__comment-total-count');
@@ -46,6 +46,8 @@ const renderComments = (comments) => {
 };
 
 const render = ({ url, description, likes, comments }) => {
+  console.log(image);
+  console.log(url);
   image.src = url;
   caption.textContent = description;
   likesCount.textContent = likes;
