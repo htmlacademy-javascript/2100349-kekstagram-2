@@ -1,4 +1,5 @@
-import {isEscapeKey, isEnterKey} from './utils.js';
+import { COMMENTS_STEP } from './constants.js';
+import { isEscapeKey, isEnterKey } from './utils.js';
 
 const modal = document.querySelector('.big-picture');
 const userCloseWindow = modal.querySelector('.big-picture__cancel');
@@ -8,6 +9,11 @@ const likesCount = modal.querySelector('.likes-count');
 const totalComments = modal.querySelector('.social__comment-total-count');
 const commentsList = modal.querySelector('.social__comments');
 const commentItem = modal.querySelector('.social__comment');
+const renderedComments = modal.querySelector('.social__comment-shown-count');
+const loaderButton = modal.querySelector('.comments-loader');
+
+let localComments;
+let commentsCount;
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -37,22 +43,37 @@ const renderComment = ({ avatar, message, name }) => {
   return newComment;
 };
 
-const renderComments = (comments) => {
+const renderStatistic = () => {
+  renderedComments.textContent = commentsCount;
+};
+
+const renderLoader = () => {
+  if (localComments.length) {
+    loaderButton.classList.remove('hidden');
+  } else {
+    loaderButton.classList.add('hidden');
+  }
+};
+
+const renderComments = () => {
   const fragment = document.createDocumentFragment();
-  comments.forEach((item) => {
+  localComments.splice(0, COMMENTS_STEP).forEach((item) => {
     fragment.append(renderComment(item));
+    commentsCount++;
   });
   commentsList.append(fragment);
+  renderStatistic();
+  renderLoader();
 };
 
 const render = ({ url, description, likes, comments }) => {
-  console.log(image);
-  console.log(url);
   image.src = url;
   caption.textContent = description;
   likesCount.textContent = likes;
   totalComments.textContent = comments.length;
-  renderComments(comments);
+  localComments = [...comments];
+  commentsCount = 0;
+  renderComments();
 };
 
 export function openUserModule(photo) {
@@ -81,4 +102,6 @@ userCloseWindow.addEventListener('keydown', (evt) => {
   }
 });
 
-export {modal, userCloseWindow,image, caption, likesCount, totalComments, commentsList,commentItem};
+loaderButton.addEventListener('click', () => {
+  renderComments();
+});
