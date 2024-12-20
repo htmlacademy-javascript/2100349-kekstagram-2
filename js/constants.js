@@ -1,12 +1,12 @@
-const PHOTO_COUNT = 25;
+export const PHOTO_COUNT = 25;
 
-const MESSAGES = [
+export const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'У моего кота получилась фотография лучше.',
 ];
 
-const DESCRIPTIONS = [
+export const DESCRIPTIONS = [
   'Утро!',
   'Котик',
   'Солнышко',
@@ -14,7 +14,7 @@ const DESCRIPTIONS = [
   'Что-то новенькое',
 ];
 
-const NAMES = [
+export const NAMES = [
   'Иван',
   'Себастьян',
   'Мария',
@@ -23,4 +23,4 @@ const NAMES = [
   'Юлия',
 ];
 
-export {PHOTO_COUNT, MESSAGES, DESCRIPTIONS, NAMES};
+export const COMMENTS_STEP = 5;

@@ -25,4 +25,8 @@ const createComments = () => ({
   name: getRandomArrayElement(NAMES),
 });
 
-export {getRandomArrayElement, getRandomIntInclusive, uniquePhoto, uniqueId, createComments};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const isEnterKey = (evt) => evt.key === 'Enter';
+
+export {getRandomArrayElement, getRandomIntInclusive, uniquePhoto, uniqueId, createComments, isEscapeKey, isEnterKey};
