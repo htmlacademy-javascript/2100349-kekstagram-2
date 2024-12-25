@@ -24,3 +24,9 @@ export const NAMES = [
 ];
 
 export const COMMENTS_STEP = 5;
+
+export const MAX_DESCRIPTION_LENGTH = 140;
+
+export const HASHTAG_FORMULA = /^#[a-zA-Zа-яА-ЯёЁ0-9]{1,19}$/;
+
+export const HASHTAGS_COUNT = 5;
