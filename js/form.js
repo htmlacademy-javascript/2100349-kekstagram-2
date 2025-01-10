@@ -1,4 +1,6 @@
 import { isValid, reset as resetValidation } from './validation.js';
+import { reset as resetScale } from './scale.js';
+import { reset as resetEffects } from './effects.js';
 
 const uploadFile = document.querySelector('#upload-file');
 const modal = document.querySelector('.img-upload__overlay');
@@ -30,6 +32,8 @@ const closeModal = () => {
 
   form.reset();
   resetValidation();
+  resetScale();
+  resetEffects();
 };
 
 uploadFile.addEventListener('change', () => {
