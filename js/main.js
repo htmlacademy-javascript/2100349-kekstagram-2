@@ -1,7 +1,15 @@
-import { createPhotos } from './data.js';
+
 import { renderCards } from './thumbnail.js';
 
 import './form.js';
+import { showErrorMessage } from './utils.js';
+import { getData } from './api.js';
 
-const data = createPhotos();
-renderCards(data);
+
+getData()
+  .then((data) => {
+    renderCards(data);
+  })
+  .catch(() => {
+    showErrorMessage();
+  });

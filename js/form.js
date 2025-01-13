@@ -1,6 +1,9 @@
 import { isValid, reset as resetValidation } from './validation.js';
 import { reset as resetScale } from './scale.js';
 import { reset as resetEffects } from './effects.js';
+import { POPUPS_TYPES } from './constants.js';
+import { showPopup } from './popup.js';
+import { sendData } from './api.js';
 
 const uploadFile = document.querySelector('#upload-file');
 const modal = document.querySelector('.img-upload__overlay');
@@ -9,6 +12,7 @@ const closeButton = document.querySelector('#upload-cancel');
 const form = document.querySelector('.img-upload__form');
 const imgPreview = document.querySelector('.img-upload__preview img');
 const effectsElements = document.querySelectorAll('.effects__preview');
+const submitButton = document.querySelector('#upload-submit');
 
 const setPreviewImage = () => {
   const file = uploadFile.files[0];
@@ -45,9 +49,36 @@ closeButton.addEventListener('click', (evt) => {
   closeModal();
 });
 
-form.addEventListener('submit', (evt) => {
+const SubmitButtonTexts = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикую...'
+};
 
-  if (!isValid()) {
-    evt.preventDefault();
+const disableSubmitButton = (isDisabled = true) => {
+  submitButton.disabled = isDisabled;
+  submitButton.textContent = isDisabled ? SubmitButtonTexts.SENDING : SubmitButtonTexts.IDLE;
+};
+
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  if (isValid()) {
+    disableSubmitButton();
+
+
+    sendData(new FormData(form))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error();
+        }
+        closeModal();
+        showPopup(POPUPS_TYPES.SUCCESS);
+      })
+      .catch(() => {
+        showPopup(POPUPS_TYPES.ERROR);
+      })
+      .finally(() => {
+        disableSubmitButton(false);
+      });
+
   }
 });

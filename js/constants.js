@@ -106,3 +106,8 @@ export const EffectsSettings = {
 };
 
 export const DEFAULT_EFFECT = EFFECTS.NONE;
+
+export const POPUPS_TYPES = {
+  SUCCESS: 'success',
+  ERROR: 'error'
+};
