@@ -36,6 +36,10 @@ export const MIN_SCALE = 25;
 export const STEP_SCALE = 25;
 export const DEFAULT_SCALE = MAX_SCALE;
 export const SCALE_FACTOR = 0.01;
+export const MASSAGE_TIME = 5000;
+export const KEKS_DATA = 'https://31.javascript.htmlacademy.pro/kekstagram/data';
+export const KEKS_NO_DATA = 'https://31.javascript.htmlacademy.pro/kekstagram';
+
 
 /*
 Для эффекта «Хром» — filter: grayscale(0..1) с шагом 0.1;

@@ -1,4 +1,8 @@
-export const getData = () => fetch('https://31.javascript.htmlacademy.pro/kekstagram/data')
+import { KEKS_DATA } from './constants';
+import { KEKS_NO_DATA } from './constants';
+
+
+export const getData = () => fetch(KEKS_DATA)
   .then((response) => {
     if (!response.ok) {
       throw new Error();
@@ -6,7 +10,7 @@ export const getData = () => fetch('https://31.javascript.htmlacademy.pro/keksta
     return response.json();
   });
 
-export const sendData = (body) => fetch('https://31.javascript.htmlacademy.pro/kekstagram', {
+export const sendData = (body) => fetch(KEKS_NO_DATA, {
   method: 'POST',
   body
 });

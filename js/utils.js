@@ -1,12 +1,13 @@
 const errorTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 const body = document.body;
+import { MASSAGE_TIME } from './constants';
 
 export const showErrorMessage = () => {
   const newErrorMessage = errorTemplate.cloneNode(true);
   body.append(newErrorMessage);
   setTimeout(() => {
     newErrorMessage.remove();
-  }, 5000);
+  }, MASSAGE_TIME);
 };
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
