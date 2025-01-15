@@ -1,32 +1,17 @@
-import {MESSAGES, NAMES} from './constants.js';
+const errorTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
+const body = document.body;
+import { MASSAGE_TIME } from './constants';
 
-const getRandomIntInclusive = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min);
+export const showErrorMessage = () => {
+  const newErrorMessage = errorTemplate.cloneNode(true);
+  body.append(newErrorMessage);
+  setTimeout(() => {
+    newErrorMessage.remove();
+  }, MASSAGE_TIME);
 };
-
-const counter = () => {
-  let sum = 0;
-  return () => {
-    sum = sum + 1;
-    return sum;
-  };
-};
-
-const uniquePhoto = counter();
-const uniqueId = counter();
-const getRandomArrayElement = (elements) => elements[getRandomIntInclusive(0, elements.length - 1)];
-
-const createComments = () => ({
-  id: getRandomIntInclusive(0, 30),
-  avatar: `img/avatar-${getRandomIntInclusive(1, 6)}.svg`,
-  message: getRandomArrayElement(MESSAGES),
-  name: getRandomArrayElement(NAMES),
-});
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const isEnterKey = (evt) => evt.key === 'Enter';
 
-export {getRandomArrayElement, getRandomIntInclusive, uniquePhoto, uniqueId, createComments, isEscapeKey, isEnterKey};
+export { isEscapeKey, isEnterKey };
