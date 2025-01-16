@@ -1,7 +1,7 @@
-import { KEKS_DATA, KEKS_NO_DATA } from './constants.js';
+import { GET_URL, POST_URL } from './constants.js';
 
 
-export const getData = () => fetch(KEKS_DATA)
+export const getData = () => fetch(GET_URL)
   .then((response) => {
     if (!response.ok) {
       throw new Error();
@@ -9,7 +9,7 @@ export const getData = () => fetch(KEKS_DATA)
     return response.json();
   });
 
-export const sendData = (body) => fetch(KEKS_NO_DATA, {
+export const sendData = (body) => fetch(POST_URL, {
   method: 'POST',
   body
 });
