@@ -1,5 +1,4 @@
-import { KEKS_DATA } from './constants';
-import { KEKS_NO_DATA } from './constants';
+import { KEKS_DATA, KEKS_NO_DATA } from './constants.js';
 
 
 export const getData = () => fetch(KEKS_DATA)
