@@ -15,7 +15,7 @@ export const MASSAGE_TIME = 5000;
 export const GET_URL = 'https://31.javascript.htmlacademy.pro/kekstagram/data';
 export const POST_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 
-export const EFFECTS = {
+export const Effects = {
   NONE: 'none',
   CHROME: 'chrome',
   SEPIA: 'sepia',
@@ -25,42 +25,42 @@ export const EFFECTS = {
 };
 
 export const EffectsSettings = {
-  [EFFECTS.NONE]: {
+  [Effects.NONE]: {
     min: 0,
     max: 1,
     step: 0.1,
     style: '',
     units: ''
   },
-  [EFFECTS.CHROME]: {
+  [Effects.CHROME]: {
     min: 0,
     max: 1,
     step: 0.1,
     style: 'grayscale',
     units: ''
   },
-  [EFFECTS.SEPIA]: {
+  [Effects.SEPIA]: {
     min: 0,
     max: 1,
     step: 0.1,
     style: 'sepia',
     units: ''
   },
-  [EFFECTS.MARVIN]: {
+  [Effects.MARVIN]: {
     min: 0,
     max: 100,
     step: 1,
     style: 'invert',
     units: '%'
   },
-  [EFFECTS.PHOBOS]: {
+  [Effects.PHOBOS]: {
     min: 0,
     max: 3,
     step: 0.1,
     style: 'blur',
     units: 'px'
   },
-  [EFFECTS.HEAT]: {
+  [Effects.HEAT]: {
     min: 1,
     max: 3,
     step: 0.1,
@@ -69,14 +69,14 @@ export const EffectsSettings = {
   },
 };
 
-export const DEFAULT_EFFECT = EFFECTS.NONE;
+export const DEFAULT_EFFECT = Effects.NONE;
 
-export const POPUPS_TYPES = {
+export const PopupType = {
   SUCCESS: 'success',
   ERROR: 'error'
 };
 
-export const FILTERS = {
+export const Filter = {
   DEFAULT: 'filter-default',
   RANDOM: 'filter-random',
   DISCUSSED: 'filter-discussed'

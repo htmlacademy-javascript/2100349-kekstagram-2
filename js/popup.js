@@ -1,4 +1,4 @@
-import { POPUPS_TYPES } from './constants.js';
+import { PopupType } from './constants.js';
 import { removeEscControl, setEscControl } from './escape-control.js';
 
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
@@ -6,8 +6,8 @@ const errorTemplate = document.querySelector('#error').content.querySelector('.e
 const body = document.body;
 
 const templates = {
-  [POPUPS_TYPES.SUCCESS]: successTemplate,
-  [POPUPS_TYPES.ERROR]: errorTemplate
+  [PopupType.SUCCESS]: successTemplate,
+  [PopupType.ERROR]: errorTemplate
 };
 
 export const showPopup = (type) => {
