@@ -14,6 +14,14 @@ noUiSlider.create(sliderBlock, {
     max: 100,
   },
   start: 80,
+  format: {
+    to: function (value) {
+      return parseFloat(value);
+    },
+    from: function (value) {
+      return parseFloat(value);
+    },
+  },
   connect: 'lower'
 });
 

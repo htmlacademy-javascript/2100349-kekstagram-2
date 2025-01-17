@@ -1,5 +1,6 @@
 import { COMMENTS_STEP } from './constants.js';
-import { isEscapeKey, isEnterKey } from './utils.js';
+import { removeEscControl, setEscControl } from './escape-control.js';
+import { isEnterKey } from './utils.js';
 
 const modal = document.querySelector('.big-picture');
 const userCloseWindow = modal.querySelector('.big-picture__cancel');
@@ -15,23 +16,15 @@ const loaderButton = modal.querySelector('.comments-loader');
 let localComments;
 let commentsCount;
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeUserModal();
-  }
+const closeModal = () => {
+  modal.classList.add('hidden');
+  document.body.classList.remove('modal-open');
 };
 
 const showModal = () => {
   modal.classList.remove('hidden');
-  document.addEventListener('keydown', onDocumentKeydown);
   document.body.classList.add('modal-open');
-};
-
-const closeModal = () => {
-  modal.classList.add('hidden');
-  document.removeEventListener('keydown', onDocumentKeydown);
-  document.body.classList.remove('modal-open');
+  setEscControl(closeModal);
 };
 
 const renderComment = ({ avatar, message, name }) => {
@@ -94,11 +87,13 @@ modal.addEventListener('keydown', (evt) => {
 
 userCloseWindow.addEventListener('click', () => {
   closeUserModal();
+  removeEscControl();
 });
 
 userCloseWindow.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
     closeUserModal();
+    removeEscControl();
   }
 });
 
