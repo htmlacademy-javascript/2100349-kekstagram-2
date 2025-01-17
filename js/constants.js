@@ -37,8 +37,8 @@ export const STEP_SCALE = 25;
 export const DEFAULT_SCALE = MAX_SCALE;
 export const SCALE_FACTOR = 0.01;
 export const MASSAGE_TIME = 5000;
-export const KEKS_DATA = 'https://31.javascript.htmlacademy.pro/kekstagram/data';
-export const KEKS_NO_DATA = 'https://31.javascript.htmlacademy.pro/kekstagram';
+export const GET_URL = 'https://31.javascript.htmlacademy.pro/kekstagram/data';
+export const POST_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 
 
 /*
@@ -114,4 +114,10 @@ export const DEFAULT_EFFECT = EFFECTS.NONE;
 export const POPUPS_TYPES = {
   SUCCESS: 'success',
   ERROR: 'error'
+};
+
+export const FILTERS = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed'
 };

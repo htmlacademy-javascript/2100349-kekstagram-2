@@ -5,7 +5,13 @@ const cardTemplate = document.querySelector('#picture').content.querySelector('.
 
 let localData;
 
+
+const clear = () => {
+  document.querySelectorAll('.picture').forEach((item) => item.remove());
+};
+
 export const renderCards = (photos) => {
+  clear();
   localData = [...photos];
   const fragment = document.createDocumentFragment();
   photos.forEach((photo) => {
