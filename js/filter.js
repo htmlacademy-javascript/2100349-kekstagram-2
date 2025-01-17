@@ -1,4 +1,4 @@
-import { FILTERS } from './constants.js';
+import { Filter } from './constants.js';
 import { renderCards } from './thumbnail.js';
 import { debounce } from './utils.js';
 
@@ -6,12 +6,12 @@ const filtersSection = document.querySelector('.img-filters');
 const formFilter = document.querySelector('.img-filters__form');
 
 let localPhotos;
-let currentFilter = FILTERS.DEFAULT;
+let currentFilter = Filter.DEFAULT;
 
 const FiltersAction = {
-  [FILTERS.DEFAULT]: () => localPhotos,
-  [FILTERS.RANDOM]: () => [...localPhotos].sort(() => Math.random() - 0.5).slice(0, 10),
-  [FILTERS.DISCUSSED]: () => [...localPhotos].sort((a, b) => b.comments.length - a.comments.length),
+  [Filter.DEFAULT]: () => localPhotos,
+  [Filter.RANDOM]: () => [...localPhotos].sort(() => Math.random() - 0.5).slice(0, 10),
+  [Filter.DISCUSSED]: () => [...localPhotos].sort((a, b) => b.comments.length - a.comments.length),
 };
 
 const setActiveButton = (button) => {

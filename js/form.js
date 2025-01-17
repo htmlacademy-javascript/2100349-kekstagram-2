@@ -1,7 +1,7 @@
 import { isValid, reset as resetValidation } from './validation.js';
 import { reset as resetScale } from './scale.js';
 import { reset as resetEffects } from './effects.js';
-import { POPUPS_TYPES, SubmitButtonTexts } from './constants.js';
+import { PopupType, SubmitButtonTexts } from './constants.js';
 import { showPopup } from './popup.js';
 import { sendData } from './api.js';
 import { removeEscControl, setEscControl } from './escape-control.js';
@@ -73,10 +73,10 @@ form.addEventListener('submit', (evt) => {
         }
         closeModal();
         removeEscControl();
-        showPopup(POPUPS_TYPES.SUCCESS);
+        showPopup(PopupType.SUCCESS);
       })
       .catch(() => {
-        showPopup(POPUPS_TYPES.ERROR);
+        showPopup(PopupType.ERROR);
       })
       .finally(() => {
         disableSubmitButton(false);
