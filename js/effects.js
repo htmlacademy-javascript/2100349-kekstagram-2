@@ -40,7 +40,6 @@ const updateSlider = () => {
 };
 
 export const reset = () => {
-  //console.log('reset effects');
   currentEffect = DEFAULT_EFFECT;
   document.querySelector('.effects__radio[value="none"]').checked = true;
   sliderContainer.classList.add('hidden');
