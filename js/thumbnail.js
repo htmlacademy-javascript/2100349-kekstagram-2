@@ -5,7 +5,6 @@ const cardTemplate = document.querySelector('#picture').content.querySelector('.
 
 let localData;
 
-
 const clear = () => {
   document.querySelectorAll('.picture').forEach((item) => item.remove());
 };
@@ -16,7 +15,9 @@ export const renderCards = (photos) => {
   const fragment = document.createDocumentFragment();
   photos.forEach((photo) => {
     const thumbnail = cardTemplate.cloneNode(true);
-    thumbnail.querySelector('.picture__img').src = photo.url;
+    const image = thumbnail.querySelector('.picture__img');
+    image.src = photo.url;
+    image.alt = photo.description;
     thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
     thumbnail.querySelector('.picture__likes').textContent = photo.likes;
     thumbnail.dataset.id = photo.id;

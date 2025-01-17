@@ -1,18 +1,21 @@
 import { isValid, reset as resetValidation } from './validation.js';
 import { reset as resetScale } from './scale.js';
 import { reset as resetEffects } from './effects.js';
-import { POPUPS_TYPES } from './constants.js';
+import { POPUPS_TYPES, SubmitButtonTexts } from './constants.js';
 import { showPopup } from './popup.js';
 import { sendData } from './api.js';
+import { removeEscControl, setEscControl } from './escape-control.js';
 
-const uploadFile = document.querySelector('#upload-file');
-const modal = document.querySelector('.img-upload__overlay');
-const body = document.body;
-const closeButton = document.querySelector('#upload-cancel');
 const form = document.querySelector('.img-upload__form');
-const imgPreview = document.querySelector('.img-upload__preview img');
-const effectsElements = document.querySelectorAll('.effects__preview');
-const submitButton = document.querySelector('#upload-submit');
+const modal = form.querySelector('.img-upload__overlay');
+const uploadFile = form.querySelector('#upload-file');
+const body = document.body;
+const closeButton = modal.querySelector('#upload-cancel');
+const imgPreview = modal.querySelector('.img-upload__preview img');
+const effectsElements = modal.querySelectorAll('.effects__preview');
+const submitButton = modal.querySelector('#upload-submit');
+const hashtag = modal.querySelector('.text__hashtags');
+const description = modal.querySelector('.text__description');
 
 const setPreviewImage = () => {
   const file = uploadFile.files[0];
@@ -21,13 +24,6 @@ const setPreviewImage = () => {
   effectsElements.forEach((item) => {
     item.style.backgroundImage = `url(${url})`;
   });
-};
-
-const showModal = () => {
-  modal.classList.remove('hidden');
-  body.classList.add('modal-open');
-
-  setPreviewImage();
 };
 
 const closeModal = () => {
@@ -40,6 +36,16 @@ const closeModal = () => {
   resetEffects();
 };
 
+const canCloseModal = () => !(document.activeElement === hashtag || document.activeElement === description);
+
+const showModal = () => {
+  modal.classList.remove('hidden');
+  body.classList.add('modal-open');
+
+  setPreviewImage();
+  setEscControl(closeModal, canCloseModal);
+};
+
 uploadFile.addEventListener('change', () => {
   showModal();
 });
@@ -47,12 +53,8 @@ uploadFile.addEventListener('change', () => {
 closeButton.addEventListener('click', (evt) => {
   evt.preventDefault();
   closeModal();
+  removeEscControl();
 });
-
-const SubmitButtonTexts = {
-  IDLE: 'Опубликовать',
-  SENDING: 'Публикую...'
-};
 
 const disableSubmitButton = (isDisabled = true) => {
   submitButton.disabled = isDisabled;
@@ -64,13 +66,13 @@ form.addEventListener('submit', (evt) => {
   if (isValid()) {
     disableSubmitButton();
 
-
     sendData(new FormData(form))
       .then((response) => {
         if (!response.ok) {
           throw new Error();
         }
         closeModal();
+        removeEscControl();
         showPopup(POPUPS_TYPES.SUCCESS);
       })
       .catch(() => {
@@ -79,6 +81,5 @@ form.addEventListener('submit', (evt) => {
       .finally(() => {
         disableSubmitButton(false);
       });
-
   }
 });
